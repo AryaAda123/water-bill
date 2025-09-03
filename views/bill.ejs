@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bill Details</title>
+</head>
+<body>
+    <h1>Bill Details</h1>
+    <p><strong>ID:</strong> <%= bill.id %></p>
+    <p><strong>Name:</strong> <%= bill.name %></p>
+    <p><strong>Address:</strong> <%= bill.address %></p>
+    <p><strong>Amount:</strong> Rs. <%= bill.bill_amount %></p>
+    <p><strong>Due Date:</strong> <%= bill.due_date %></p>
+    <p><strong>Status:</strong> <%= bill.payment_status %></p>
+
+    <% if (bill.payment_status !== 'Paid') { %>
+        <form action="/pay-bill" method="POST">
+            <input type="hidden" name="billId" value="<%= bill.id %>">
+            <button type="submit">Pay Now</button>
+        </form>
+    <% } else { %>
+        <p style="color:green;">This bill has already been paid.</p>
+    <% } %>
+</body>
+</html>
